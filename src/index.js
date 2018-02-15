@@ -2,6 +2,7 @@
 
 const inquirer = require('inquirer')
 const chalk = require('chalk')
+const argv = require('yargs').argv
 const { exec } = require('child_process')
 
 let searchTerm = null
