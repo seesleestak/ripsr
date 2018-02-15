@@ -34,19 +34,24 @@ const prompts = [
 function search() {
   inquirer.prompt(prompts[0])
     .then(({ searchPrompt }) => {
-      exec(
-        `rg -l ${searchPrompt}`,
-        (err, stdout, stderr) => {
-          console.log(chalk.magenta(stdout))
-          if (err) {
-            console.log('err --- ', err)
-            return 
-          } else {
-            searchTerm = searchPrompt
-            confirmSearch()
+      if (argv.verbose) {
+        exec(
+          `rg -l ${searchPrompt}`,
+          (err, stdout, stderr) => {
+            console.log(chalk.magenta(stdout))
+            if (err) {
+              console.log('err --- ', err)
+              return 
+            } else {
+              searchTerm = searchPrompt
+              confirmSearch()
+            }
           }
-        }
-      )
+        )
+      } else {
+        searchTerm = searchPrompt
+        replace()
+      }
     })
 }
 
@@ -69,16 +74,20 @@ function replace() {
     })
 }
 
+function executeReplace() {
+  exec(
+    `rg -l ${searchTerm} | xargs sed -i '' 's|${searchTerm}|${replaceTerm}|g'`,
+    (err) => {
+      err && console.log('err --- ', err)
+    }
+  )
+}
+
 function confirmSearchReplace() {
   inquirer.prompt(prompts[3])
     .then(({ confirmExecutePrompt }) => {
       if (confirmExecutePrompt) {
-        exec(
-          `rg -l ${searchTerm} | xargs sed -i '' 's|${searchTerm}|${replaceTerm}|g'`,
-          (err) => {
-            err && console.log('err --- ', err)
-          }
-        )
+        executeReplace()
       } else {
         return 
       }
