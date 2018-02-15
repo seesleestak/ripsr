@@ -1,8 +1,8 @@
-const chalk = require('chalk')
-const clear = require('clear')
-const inquirer = require('inquirer')
+#!/usr/bin/env node
 
-clear()
+const inquirer = require('inquirer')
+const { exec } = require('child_process')
+
 const prompts = [
   {
     name: 'search',
@@ -16,4 +16,6 @@ const prompts = [
   }
 ]
 
-inquirer.prompt(prompts)
+inquirer.prompt(prompts).then(({ search, replace }) => {
+  exec(`rg -l ${search} | xargs sed -i '' 's|${search}|${replace}|g'`)
+})
