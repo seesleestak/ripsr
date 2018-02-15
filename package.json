@@ -1,19 +1,18 @@
 {
-  "name": "riprep",
+  "name": "ripsr",
   "version": "1.0.0",
   "description": "Search and replace command line utility based on ripgrep",
   "main": "index.js",
   "bin": {
-    "riprep": "bin/index.js"
+    "ripsr": "src/index.js",
+    "rsr": "src/index.js"
   },
   "dependencies": {
-    "chalk": "^2.3.1",
-    "clear": "0.0.1",
-    "eslint": "^4.17.0",
-    "inquirer": "^5.1.0",
-    "minimist": "^1.2.0"
+    "inquirer": "^5.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^4.17.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
