@@ -10,4 +10,4 @@ npm install ripsr -g
 
 ## Usage
 
-Upon entering the `ripsr` command, you will be prompted for a search term and a replace term.
+Upon entering the `ripsr` command -- or `rsr` alias -- you will be prompted for a search term and a replace term.
