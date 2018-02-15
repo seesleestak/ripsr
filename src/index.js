@@ -9,22 +9,22 @@ let replaceTerm = null
 
 const prompts = [
   {
-    name: 'search',
+    name: 'searchPrompt',
     type: 'input',
     message: 'Search term:',
   },
   {
-    name: 'replace',
+    name: 'replacePrompt',
     type: 'input',
     message: 'Replace term:',
   },
   {
-    name: 'confirmSearch',
+    name: 'confirmSearchPrompt',
     type: 'confirm',
     message: 'Search results acceptable?'
   },
   {
-    name: 'confirmExecute',
+    name: 'confirmExecutePrompt',
     type: 'confirm',
     message: 'Execute search and replace?'
   }
@@ -32,16 +32,16 @@ const prompts = [
 
 function search() {
   inquirer.prompt(prompts[0])
-    .then(({ search }) => {
+    .then(({ searchPrompt }) => {
       exec(
-        `rg -l ${search}`,
+        `rg -l ${searchPrompt}`,
         (err, stdout, stderr) => {
           console.log(chalk.magenta(stdout))
           if (err) {
             console.log('err --- ', err)
             return 
           } else {
-            searchTerm = search
+            searchTerm = searchPrompt
             confirmSearch()
           }
         }
@@ -51,28 +51,36 @@ function search() {
 
 function confirmSearch() {
   inquirer.prompt(prompts[2])
-    .then(() => {
-      replace()
+    .then(({ confirmSearchPrompt }) => {
+      if (confirmSearchPrompt) { 
+        replace() 
+      } else {
+        return
+      }
     })
 }
 
 function replace() {
   inquirer.prompt(prompts[1])
-    .then(({ replace }) => {
-      replaceTerm = replace
+    .then(({ replacePrompt }) => {
+      replaceTerm = replacePrompt
       confirmSearchReplace()
     })
 }
 
 function confirmSearchReplace() {
   inquirer.prompt(prompts[3])
-    .then(() => {
-      exec(
-        `rg -l ${searchTerm} | xargs sed -i '' 's|${searchTerm}|${replaceTerm}|g'`,
-        (err) => {
-          err && console.log('err --- ', err)
-        }
-      )
+    .then(({ confirmExecutePrompt }) => {
+      if (confirmExecutePrompt) {
+        exec(
+          `rg -l ${searchTerm} | xargs sed -i '' 's|${searchTerm}|${replaceTerm}|g'`,
+          (err) => {
+            err && console.log('err --- ', err)
+          }
+        )
+      } else {
+        return 
+      }
     })
 }
 
