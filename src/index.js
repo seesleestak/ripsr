@@ -10,7 +10,7 @@ let replaceTerm = null
 
 function executeReplace() {
   exec(
-    `rg -l ${searchTerm} | xargs sed -i '' 's|${searchTerm}|${replaceTerm}|g'`,
+    `rg -l -F '${searchTerm}' | xargs sed -i '' 's|${searchTerm}|${replaceTerm}|g'`,
     (err) => {
       err && console.log('err --- ', err)
     }
@@ -56,7 +56,7 @@ if (argv._.length) {
       .then(({ searchPrompt }) => {
         if (argv.verbose) {
           exec(
-            `rg -l ${searchPrompt}`,
+            `rg -l -F '${searchPrompt}'`,
             (err, stdout, stderr) => {
               console.log(chalk.magenta(stdout))
               if (err) {
