@@ -1,6 +1,6 @@
 {
   "name": "ripsr",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Search and replace command line utility based on ripgrep",
   "main": "index.js",
   "bin": {
