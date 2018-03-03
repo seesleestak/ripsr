@@ -16,6 +16,7 @@
     "eslint": "^4.17.0"
   },
   "scripts": {
+    "release": "npm version patch && npm publish",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Calvin Cieslak",
