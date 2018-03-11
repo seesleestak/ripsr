@@ -1,4 +1,5 @@
 # ripsr
+[![npm version](https://badge.fury.io/js/ripsr.svg)](https://badge.fury.io/js/ripsr)
 
 A search and replace command line utility based on [ripgrep](https://github.com/BurntSushi/ripgrep).
 
@@ -27,5 +28,3 @@ ripsr 'SearchTerm' 'ReplaceTerm'
 ```
 
 With this usage, there will be no confirmation prompts and the search and replace will be executed immediately.
-
-
