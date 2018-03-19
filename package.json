@@ -2,6 +2,10 @@
   "name": "ripsr",
   "version": "1.0.4",
   "description": "Search and replace command line utility based on ripgrep",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seesleestak/ripsr"
+  },
   "main": "index.js",
   "bin": {
     "ripsr": "src/index.js",
