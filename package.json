@@ -12,12 +12,12 @@
     "rsr": "src/index.js"
   },
   "dependencies": {
-    "chalk": "^2.3.1",
-    "inquirer": "^5.1.0",
+    "chalk": "^2.4.1",
+    "inquirer": "^5.2.0",
     "yargs": "^11.0.0"
   },
   "devDependencies": {
-    "eslint": "^4.17.0"
+    "eslint": "^4.19.1"
   },
   "scripts": {
     "release": "npm version patch && git push origin && git push origin --tags && npm publish",
