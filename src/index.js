@@ -10,7 +10,7 @@ let replaceTerm = null
 
 function executeReplace() {
   exec(
-    `rg -l -F '${searchTerm}' | xargs sed -i '' 's|${searchTerm}|${replaceTerm}|g'`,
+    `rg -l -F '${searchTerm}' | xargs sed -i'' 's|${searchTerm}|${replaceTerm}|g'`,
     (err) => {
       err && console.log('err --- ', err)
     }
