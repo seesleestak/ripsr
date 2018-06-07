@@ -4,6 +4,7 @@ const inquirer = require('inquirer')
 const chalk = require('chalk')
 const argv = require('yargs').argv
 const { exec } = require('child_process')
+const helpString = require('./help.js')
 
 let searchTerm = null
 let replaceTerm = null
@@ -27,6 +28,8 @@ if (argv._.length) {
   } else {
     console.log('Invalid arguments')
   }
+} else if (argv.help || argv.h) {
+  console.log(helpString)
 } else {
   const prompts = [
     {
@@ -54,7 +57,7 @@ if (argv._.length) {
   function search() {
     inquirer.prompt(prompts[0])
       .then(({ searchPrompt }) => {
-        if (argv.verbose) {
+        if (argv.verbose || argv.v) {
           exec(
             `rg -l -F '${searchPrompt}'`,
             (err, stdout, stderr) => {
