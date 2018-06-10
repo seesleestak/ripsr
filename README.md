@@ -11,11 +11,8 @@ npm install ripsr -g
 
 ## Dependencies
 
-You need [ripgrep](https://github.com/BurntSushi/ripgrep) to use this. 
-
-```bash
-brew install ripgrep
-```
+- [ripgrep](https://github.com/BurntSushi/ripgrep#installation) 
+- [node](https://nodejs.org/en/)
 
 ## Usage
 
